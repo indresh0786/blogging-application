@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 BASE_DIR=Path(__file__).resolve().parent.parent
 SECRET_KEY="blogging-app-college-project"
 DEBUG=True
@@ -29,3 +30,9 @@ DEFAULT_AUTO_FIELD="django.db.models.BigAutoField"
 LOGIN_URL="login"
 LOGIN_REDIRECT_URL="home"
 LOGOUT_REDIRECT_URL="home"
+VAPID_PRIVATE_KEY = "/etc/secrets/private.key.pem"
+VAPID_PUBLIC_KEY = os.environ.get("VAPID_PUBLIC_KEY")
+VAPID_SUBJECT = os.environ.get(
+    "VAPID_SUBJECT",
+    "mailto:jara23260@gmail.com"
+)
