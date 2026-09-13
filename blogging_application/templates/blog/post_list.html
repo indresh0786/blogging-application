@@ -1,0 +1,43 @@
+{% extends "blog/base.html" %}
+{% block title %}Discover | Inkspire{% endblock %}
+{% block content %}
+<section class="page-head">
+    <div class="eyebrow">DISCOVER</div>
+    <h1>Read something worth remembering.</h1>
+</section>
+<form method="get" class="search-bar">
+    <input name="q" value="{{ q }}" placeholder="Search stories, topics or authors">
+    <button>Search</button>
+</form>
+<section class="section compact">
+    <div class="post-list">
+        {% for post in posts %}
+        <article class="list-card">
+            <div class="list-copy">
+                <div class="meta">
+                    {{ post.category|default:"Uncategorized" }} • {{ post.created_at|date:"d M Y" }}
+                </div>
+                <h2>
+                    <a href="{% url 'post_detail' post.pk %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p>
+                    {{ post.excerpt|default:post.content|truncatechars:190 }}
+                </p>
+                <small>By {{ post.author.username }} · ♥ {{ post.like_count }} · ◉ {{ post.views }}</small>
+            </div>
+            <div class="list-image">
+                {% if post.image_url %}
+                <img src="{{ post.image_url }}" alt="{{ post.title }}">
+                {% else %}
+                <div class="placeholder">✦</div>
+                {% endif %}
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty">No matching stories found.</div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

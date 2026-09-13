@@ -1,0 +1,87 @@
+{% extends "blog/base.html" %}
+{% block title %}Writer Dashboard | Inkspire{% endblock %}
+{% block content %}
+<section class="dashboard-head">
+    <div>
+        <div class="eyebrow">WRITER STUDIO</div>
+        <h1>Your stories, {{ user.username }}.</h1>
+        <p>Draft ideas, publish stories and track how readers respond.</p>
+    </div><a class="primary" href="{% url 'create_post' %}">+ New Story</a>
+</section>
+<section class="stats">
+    <div><span>Total</span>
+        <b>
+            {{ total }}
+        </b>
+    </div>
+    <div><span>Published</span>
+        <b>
+            {{ published }}
+        </b>
+    </div>
+    <div>
+        <span>Drafts</span>
+        <b>
+            {{ drafts }}
+        </b>
+    </div>
+    <div>
+        <span>Views</span>
+        <b>
+            {{ total_views }}
+        </b>
+    </div>
+</section>
+<section class="section compact">
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Story</th>
+                    <th>Status</th>
+                    <th>Views</th>
+                    <th>Likes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>
+                        <b>
+                            {{ post.title }}
+                        </b>
+                        <br>
+                        <small>
+                            {{ post.created_at|date:"d M Y" }}
+                        </small>
+                    </td>
+                    <td>
+                        <span class="status {{ post.status }}">
+                            {{ post.get_status_display }}
+                        </span>
+                    </td>
+
+                    {{ post.views }}
+
+                    <td>
+                        {{ post.like_count }}
+                    </td>
+                    <td>
+                        <a class="mini-btn" href="{% url 'edit_post' post.pk %}">Edit</a>
+                        <form class="inline-form delete-form" method="post" action="{% url 'delete_post' post.pk %}">
+                            {% csrf_token %}
+                            <button class="mini-btn danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No stories yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

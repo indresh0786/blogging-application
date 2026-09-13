@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}{% block title %}Register | Inkspire{% endblock %}{% block content %}<section
+    class="auth">
+    <div class="auth-card">
+        <div class="eyebrow">JOIN INKSPIRE</div>
+        <h1>Start writing today.</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field"><label>
+                    {{ field.label }}
+                </label>{{ field }}
+                {% if field.errors %}
+                <div class="error">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button class="primary full">Create Account</button>
+        </form>
+        <p>Already a member? <a class="text-link" href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
+</section>
+{% endblock %}

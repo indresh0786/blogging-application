@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% block title %}
+{{ title }} | Inkspire{% endblock %}
+{% block content %}
+<section class="editor-layout">
+    <div class="editor-copy">
+        <div class="eyebrow">EDITOR</div>
+        <h1>
+            {{ title }}
+        </h1>
+        <p>Write clearly, tell a story, and publish when you're ready.</p>
+    </div>
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="field">
+                <label>
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="error">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button class="primary">Save Story</button>
+            <a class="secondary" href="{% url 'dashboard' %}">Cancel</a>
+        </form>
+    </div>
+</section>
+{% endblock %}

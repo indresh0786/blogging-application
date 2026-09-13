@@ -1,0 +1,693 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap');
+
+:root {
+    --ink: #1c1917;
+    --muted: #716c67;
+    --paper: #f7f2e9;
+    --card: #fffdf9;
+    --line: #e5ddd0;
+    --accent: #b6492d;
+    --dark: #28231f
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}
+
+.site-header {
+    height: 76px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    background: #fffaf2;
+    position: sticky;
+    top: 0;
+    z-index: 10
+}
+
+.brand {
+    font: 400 32px 'Libre Caslon Display'
+}
+
+.brand span {
+    color: var(--accent)
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600
+}
+
+.write-btn,
+.primary {
+    background: var(--dark);
+    color: #fff !important;
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 2px;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.nav-button {
+    border: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer
+}
+
+.inline-form {
+    display: inline
+}
+
+.messages {
+    position: fixed;
+    right: 20px;
+    top: 90px;
+    z-index: 20
+}
+
+.message {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px
+}
+
+.hero {
+    padding: 90px 7%;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: 70px;
+    align-items: center
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 12px
+}
+
+.hero h1,
+.page-head h1,
+.dashboard-head h1 {
+    font: 400 clamp(50px, 7vw, 90px) 'Libre Caslon Display';
+    line-height: .98;
+    margin: 0 0 22px
+}
+
+.hero h1 em {
+    color: var(--accent);
+    font-style: italic
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 650px
+}
+
+.hero-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px
+}
+
+.secondary {
+    border: 1px solid var(--dark);
+    padding: 10px 16px;
+    background: transparent
+}
+
+.hero-note {
+    background: var(--dark);
+    color: #fff;
+    padding: 45px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.quote-mark {
+    font: 400 70px 'Libre Caslon Display';
+    color: #d98d78
+}
+
+.hero-note p {
+    font: 400 31px 'Libre Caslon Display';
+    line-height: 1.25;
+    color: #fff
+}
+
+.hero-note small {
+    color: #c8beb5
+}
+
+.category-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 17px 7%;
+    display: flex;
+    gap: 30px;
+    overflow: auto;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px
+}
+
+.section {
+    padding: 65px 7%
+}
+
+.compact {
+    padding-top: 25px
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 28px
+}
+
+.section-head h2 {
+    font: 400 40px 'Libre Caslon Display';
+    margin: 0
+}
+
+.text-link {
+    color: var(--accent);
+    font-weight: 700
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px
+}
+
+.post-card {
+    background: var(--card);
+    border: 1px solid var(--line)
+}
+
+.post-image {
+    height: 210px;
+    background: #e6ddd0
+}
+
+.post-image img,
+.list-image img,
+.article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    font: 400 65px 'Libre Caslon Display';
+    color: #a28d79
+}
+
+.post-body {
+    padding: 20px
+}
+
+.meta {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 700
+}
+
+.post-body h3 {
+    font: 400 27px 'Libre Caslon Display';
+    margin: 10px 0
+}
+
+.post-body p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px
+}
+
+.card-foot {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    color: var(--muted);
+    font-size: 11px
+}
+
+.page-head {
+    padding: 70px 7% 25px
+}
+
+.page-head h1 {
+    font-size: 60px;
+    max-width: 850px
+}
+
+.search-bar {
+    margin: 0 7%;
+    display: flex;
+    background: #fff;
+    border: 1px solid var(--line)
+}
+
+.search-bar input {
+    flex: 1;
+    border: 0;
+    padding: 15px;
+    font: inherit;
+    outline: 0
+}
+
+.search-bar button {
+    border: 0;
+    background: var(--dark);
+    color: #fff;
+    padding: 0 24px;
+    font-weight: 700
+}
+
+.post-list {
+    display: grid;
+    gap: 18px;
+    max-width: 1000px
+}
+
+.list-card {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 30px
+}
+
+.list-copy h2 {
+    font: 400 34px 'Libre Caslon Display';
+    margin: 8px 0
+}
+
+.list-copy p {
+    color: var(--muted);
+    line-height: 1.7
+}
+
+.list-image {
+    height: 160px;
+    background: #e6ddd0
+}
+
+.article {
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 0 25px
+}
+
+.article-head {
+    text-align: center
+}
+
+.article-head h1 {
+    font: 400 clamp(45px, 7vw, 75px) 'Libre Caslon Display';
+    line-height: 1.02;
+    margin: 15px 0
+}
+
+.article-head>p {
+    font-size: 19px;
+    color: var(--muted);
+    line-height: 1.7
+}
+
+.author-line {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 18px
+}
+
+.article-image {
+    height: 430px;
+    margin: 40px 0
+}
+
+.article-content {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #3c3631
+}
+
+.article-actions {
+    border-top: 1px solid var(--line);
+    margin-top: 35px;
+    padding-top: 20px
+}
+
+.like-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 10px 15px;
+    font-weight: 700
+}
+
+.comments {
+    max-width: 850px;
+    margin: 0 auto 70px;
+    padding: 0 25px
+}
+
+.comments h2 {
+    font: 400 35px 'Libre Caslon Display'
+}
+
+.comment-form textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    padding: 13px;
+    font: inherit;
+    margin-bottom: 10px
+}
+
+.comment-list {
+    margin-top: 25px;
+    display: grid;
+    gap: 12px
+}
+
+.comment {
+    background: #fff;
+    border-left: 3px solid var(--accent);
+    padding: 15px
+}
+
+.comment small {
+    color: var(--muted);
+    margin-left: 8px
+}
+
+.dashboard-head {
+    padding: 65px 7% 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end
+}
+
+.dashboard-head h1 {
+    font-size: 55px
+}
+
+.dashboard-head p {
+    color: var(--muted)
+}
+
+.stats {
+    padding: 0 7% 35px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px
+}
+
+.stats>div {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 20px
+}
+
+.stats span,
+.stats b {
+    display: block
+}
+
+.stats span {
+    color: var(--muted);
+    font-size: 11px
+}
+
+.stats b {
+    font: 400 30px 'Libre Caslon Display';
+    margin-top: 6px
+}
+
+.table-wrap {
+    background: #fff;
+    border: 1px solid var(--line);
+    overflow: auto
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px
+}
+
+th,
+td {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px
+}
+
+th {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted)
+}
+
+.status {
+    padding: 5px 8px;
+    font-size: 10px;
+    font-weight: 700
+}
+
+.status.published {
+    background: #e8f4ec;
+    color: #2a7450
+}
+
+.status.draft {
+    background: #f3eee6;
+    color: #8a6b42
+}
+
+.mini-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 700
+}
+
+.danger {
+    color: #b43b3b
+}
+
+.editor-layout {
+    padding: 60px 7%;
+    display: grid;
+    grid-template-columns: .65fr 1.35fr;
+    gap: 45px
+}
+
+.editor-copy h1 {
+    font: 400 52px 'Libre Caslon Display';
+    margin: 0
+}
+
+.editor-copy p {
+    color: var(--muted);
+    line-height: 1.7
+}
+
+.form-card,
+.auth-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 30px
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 15px
+}
+
+.field label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    border: 1px solid #ddd3c5;
+    background: #fffdf9;
+    padding: 12px;
+    font: inherit
+}
+
+.error {
+    color: #b43b3b;
+    font-size: 12px
+}
+
+.auth {
+    min-height: 70vh;
+    display: grid;
+    place-items: center;
+    padding: 60px 20px
+}
+
+.auth-card {
+    width: min(440px, 100%)
+}
+
+.auth-card h1 {
+    font: 400 44px 'Libre Caslon Display'
+}
+
+.full {
+    width: 100%
+}
+
+.empty {
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border: 1px dashed var(--line)
+}
+
+footer {
+    background: var(--dark);
+    color: #cfc6bd;
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between
+}
+
+footer strong {
+    font: 400 27px 'Libre Caslon Display';
+    color: #fff
+}
+
+footer p {
+    margin: 5px 0 0;
+    font-size: 12px
+}
+
+.muted {
+    color: var(--muted)
+}
+
+@media(max-width:850px) {
+
+    .hero,
+    .editor-layout {
+        grid-template-columns: 1fr
+    }
+
+    .post-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .list-card {
+        grid-template-columns: 1fr
+    }
+
+    .list-image {
+        height: 230px
+    }
+
+    .dashboard-head {
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column
+    }
+}
+
+@media(max-width:600px) {
+    .site-header {
+        padding: 0 4%
+    }
+
+    nav {
+        gap: 10px;
+        font-size: 12px
+    }
+
+    .hero,
+    .section,
+    .page-head,
+    .dashboard-head,
+    .editor-layout {
+        padding-left: 5%;
+        padding-right: 5%
+    }
+
+    .post-grid {
+        grid-template-columns: 1fr
+    }
+
+    .hero {
+        padding-top: 55px
+    }
+
+    .hero-note {
+        min-height: 230px
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+        padding-left: 5%;
+        padding-right: 5%
+    }
+
+    .article-image {
+        height: 260px
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 12px
+    }
+}
