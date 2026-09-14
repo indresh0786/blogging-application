@@ -1,3 +1,5 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -6,6 +8,10 @@ from django.shortcuts import get_object_or_404,redirect,render
 from django.views.decorators.http import require_POST
 from .forms import RegisterForm,PostForm,CommentForm
 from .models import Post,Category
+import json
+import os 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
     return render(request,"blog/home.html",{"posts":Post.objects.filter(status="published")[:6],"categories":Category.objects.all()[:6]})
@@ -40,7 +46,10 @@ def post_detail(request,pk):
 @login_required
 def dashboard(request):
     posts=Post.objects.filter(author=request.user)
-    return render(request,"blog/dashboard.html",{"posts":posts,"total":posts.count(),"published":posts.filter(status="published").count(),"drafts":posts.filter(status="draft").count(),"total_views":sum(p.views for p in posts)})
+    return render(request,"blog/dashboard.html",{"posts":posts,"total":posts.count(),
+                                                 "published":posts.filter(status="published").count(),
+                                                 "drafts":posts.filter(status="draft").count(),
+                                                 "total_views":sum(p.views for p in posts)})
 
 @login_required
 def create_post(request):
@@ -63,6 +72,40 @@ def delete_post(request,pk):
 
 @login_required
 @require_POST
+@csrf_exempt
+def subscribe_push(request):
+    if request.method != "POST":
+        return JsonResponse({"error": "POST required"}, status=405)
+
+    try:
+        data = json.loads(request.body)
+
+        endpoint = data.get("endpoint")
+        keys = data.get("keys", {})
+
+        if not endpoint:
+            return JsonResponse({"error": "Invalid subscription"}, status=400)
+
+        from .models import PushSubscription
+
+        PushSubscription.objects.update_or_create(
+            endpoint=endpoint,
+            defaults={
+                "p256dh": keys.get("p256dh", ""),
+                "auth": keys.get("auth", ""),
+            }
+        )
+
+        return JsonResponse({"success": True})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+
+def vapid_public_key(request):
+    return JsonResponse({
+        "publicKey": os.environ.get("VAPID_PUBLIC_KEY", "")
+    })
 def toggle_like(request,pk):
     p=get_object_or_404(Post,pk=pk,status="published")
     if p.likes.filter(pk=request.user.pk).exists():p.likes.remove(request.user)
