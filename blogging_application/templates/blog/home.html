@@ -60,8 +60,7 @@
                 <p>
                     {{ post.excerpt|default:post.content|truncatechars:130 }}</p>
                 <div class="card-foot"><span>By {{ post.author.username }}</span>
-                    <span>♥ {{ post.like_count }} · ◉ {{
-                        post.views }}</span>
+                    <span>♥ {{ post.like_count }} · ◉ {{ post.views }} views</span>
                 </div>
             </div>
         </article>

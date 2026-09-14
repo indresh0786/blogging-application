@@ -20,8 +20,9 @@
             {% else %}
             <a href="{% url 'login' %}">Login</a>
             <a class="write-btn" href="{% url 'register' %}">Join</a>
-            <button id="notify-btn" type="button">🔔 Notify Me</button>
+
             {% endif %}
+            <button id="notify-btn" type="button">🔔 Notify Me</button>
         </nav>
     </header>
     {% if messages %}
